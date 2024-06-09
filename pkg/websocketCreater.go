@@ -14,18 +14,10 @@ var upgrader = websocket.Upgrader{
 	CheckOrigin: func(r *http.Request) bool { return true },
 }
 
+// TO DO fix this part
 func setupRoutes() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "Simple Server")
 	})
-	http.HandleFunc("/ws", wsCreater)
-}
-
-func wsCreater(response http.ResponseWriter, request *http.Request) {
-	conn, err := (&websocket.Upgrader{CheckOrigin: func(r *http.Request) bool { return true }}).Upgrade(response, request, nil)
-	if err != nil {
-		http.NotFound(response, request)
-		return
-	}
-	fmt.Println(conn)
+	http.HandleFunc("/ws", func(w http.ResponseWriter, r *http.Request) {})
 }
