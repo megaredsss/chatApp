@@ -7,6 +7,7 @@ import (
 	"github.com/gorilla/websocket"
 )
 
+// HTTP -> WebSocket
 var upgrader = websocket.Upgrader{
 	ReadBufferSize:  1024,
 	WriteBufferSize: 1024,
@@ -21,11 +22,13 @@ func startWs(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	for {
+		// Reading
 		messageType, r, err := conn.ReadMessage()
 		if err != nil {
 			log.Println("read error: ", err)
 			return
 		}
+		// Writing
 		err = conn.WriteMessage(messageType, r)
 		if err != nil {
 			log.Println("write error: ", err)
@@ -33,3 +36,5 @@ func startWs(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 }
+
+// TO-DO add conc
