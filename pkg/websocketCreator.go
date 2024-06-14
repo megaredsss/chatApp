@@ -9,6 +9,7 @@ import (
 	"github.com/gorilla/websocket"
 )
 
+// Go is my favorite language(i hate it)
 type room struct {
 	models.Room
 }
@@ -19,11 +20,6 @@ type message struct {
 	models.Message
 }
 
-// Go my favorite language
-// var client Client
-// var message Message
-// var room Room
-
 // HTTP -> WebSocket
 var upgrader = websocket.Upgrader{
 	ReadBufferSize:  1024,
@@ -32,6 +28,7 @@ var upgrader = websocket.Upgrader{
 	CheckOrigin: func(r *http.Request) bool { return true },
 }
 
+// TO-DO remake func
 func startWs(w http.ResponseWriter, r *http.Request) {
 	conn, err := upgrader.Upgrade(w, r, nil)
 	if err != nil {
