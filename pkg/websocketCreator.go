@@ -51,6 +51,7 @@ func startWs(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// starter
 func (room room) Start() {
 	for {
 		select {
