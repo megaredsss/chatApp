@@ -1,6 +1,7 @@
 package pkg
 
+// Message struct
 type Message struct {
-	User string `json:"user"`
-	Text string `json:"text"`
+	Type int    `json:"type"`
+	Body string `json:"body"`
 }
