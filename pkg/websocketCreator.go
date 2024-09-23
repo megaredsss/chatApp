@@ -1,7 +1,6 @@
 package pkg
 
 import (
-	models "chatApp/pkg/models"
 	"fmt"
 	"log"
 	"net/http"
@@ -11,13 +10,13 @@ import (
 
 // Go is my favorite language(i hate it)
 type room struct {
-	models.Room
+	Room
 }
 type client struct {
-	models.Client
+	Client
 }
 type message struct {
-	models.Message
+	Message
 }
 
 // HTTP -> WebSocket
@@ -60,14 +59,14 @@ func (room room) Start() {
 			fmt.Println("Size of Connection room: ", len(room.Clients))
 			for client, _ := range room.Clients {
 				fmt.Println(client)
-				client.Ws.WriteJSON(models.Message{Type: 1, Body: "New User Joined..."})
+				client.Ws.WriteJSON(Message{Type: 1, Body: "New User Joined..."})
 			}
 			break
 		case client := <-room.Unregister:
 			delete(room.Clients, client)
 			fmt.Println("Size of Connection Pool: ", len(room.Clients))
 			for client, _ := range room.Clients {
-				client.Ws.WriteJSON(models.Message{Type: 1, Body: "User Disconnected..."})
+				client.Ws.WriteJSON(Message{Type: 1, Body: "User Disconnected..."})
 			}
 			break
 		case message := <-room.Broadcast:
