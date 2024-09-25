@@ -1,7 +1,7 @@
 package db
 
 import (
-	"chatApp/pkg/models"
+	"chatApp/internal/models"
 	"fmt"
 
 	"gorm.io/gorm"
