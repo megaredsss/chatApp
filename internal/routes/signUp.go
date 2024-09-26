@@ -1,5 +1,5 @@
 package routes
 
-func login() {
+func signUp() {
 
 }

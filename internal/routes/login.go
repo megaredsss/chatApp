@@ -1,5 +1,7 @@
 package routes
 
-func signUp() {
+import "github.com/gin-gonic/gin"
+
+func Login(c *gin.Context) {
 
 }
