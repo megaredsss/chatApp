@@ -1,20 +1,19 @@
 package main
 
 import (
-	"chatApp/internal/db"
+	"chatApp/internal/database"
 	jwtpackage "chatApp/internal/jwt"
-	"chatApp/internal/routes"
+	routes "chatApp/internal/server"
 
 	"github.com/gin-gonic/gin"
 	_ "github.com/lib/pq"
 )
 
 func main() {
-	db.ConnectToDb()
+	database.ConnectToDb()
 	r := gin.Default()
-	r.GET("/login", func(c *gin.Context) {
-		routes.Login(c)
-	})
+	r.LoadHTMLGlob("templates/html/*")
+	routes.Login(r)
 	r.GET("/ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"message": "pong",
